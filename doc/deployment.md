@@ -6,10 +6,10 @@
 
 The production deployment uses docker-compose, and needs to run 4 containers:
 
-* **reverse-proxy**: a simple nginx setup to reverse-proxy requests to the frontend and backend containers
-* **backend**: the backend app (a very simple JSON API built using Node)
-* **mongo**: the database (uses an extremely simple single-instance MongoDB setup)
-* **frontend**: the SPA frontend app (built using React and create-react-app)
+- **reverse-proxy**: a simple nginx setup to reverse-proxy requests to the frontend and backend containers
+- **backend**: the backend app (a very simple JSON API built using Node)
+- **mongo**: the database (uses an extremely simple single-instance MongoDB setup)
+- **frontend**: the SPA frontend app (built using React and create-react-app)
 
 ## Setup steps
 
@@ -18,7 +18,6 @@ depending on your distro (specifically, the "Install Docker" step).
 
 It assumes you're running as root. If that's not the case, prepend all commands with `sudo` or start
 a root shell with `sudo bash`.
-
 
 ### 1. Install Docker and docker-compose:
 
@@ -36,7 +35,6 @@ curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compo
 chmod +x /usr/local/bin/docker-compose
 ```
 
-
 ### 2. Get a server and set up your DNS
 
 Obtain a domain name and set up 2 DNS records pointing to your server. One will be used for the frontend app, and one
@@ -49,25 +47,26 @@ A   mydemoapp.com           123.123.123.123
 A   backend.mydemoapp.com   123.123.123.123
 ```
 
-
 ### 3. Register your app on the developer portal
 
-Open `develop.pi` in the Pi Browser, on your mobile phone, and go through the prerequisite steps
+Open `https://develop.pinet.com` in the Pi Browser, on your mobile phone, and go through the prerequisite steps
 (e.g verifying your email address).
 
 Two options here:
+
 - if you already have a development app set up, you can reuse it here (see [the development guide](./development.md))
 - if you're setting things up for the first time, you can create a new app by clicking the "Register An App" button.
 
 Register an App:
-  - Name: The name of your app
-  - Description: A public user-facing description of your app
+
+- Name: The name of your app
+- Description: A public user-facing description of your app
 
 <img title="Register An App" alt="Registration Form for an App" src="./img/register_app.PNG" style="width:300px;height:600px;" />
 
 <br />
 
-This will bring you to the App Dashboard, from this screen you can continue the setup of the demo app for deployment. 
+This will bring you to the App Dashboard, from this screen you can continue the setup of the demo app for deployment.
 
 - App Checklist: Complete Steps 6-9 to prepare the app for deployment
   - Step 6: Deploy the App to the Production Environment - Add the Production URL
@@ -80,10 +79,9 @@ This will bring you to the App Dashboard, from this screen you can continue the 
 - App Configuration: Additional information that can be adjusted
   - Whitelisted usernames: you can leave this blank at this point
   - Hosting type: select "Self hosted"
-  - App URL: Enter the intended production URL of your app (e.g "https://mydemoapp.com"), 
-  or simply set it up to an example value (e.g "https://example.com"). This must be an HTTPs URL.
+  - App URL: Enter the intended production URL of your app (e.g "https://mydemoapp.com"),
+    or simply set it up to an example value (e.g "https://example.com"). This must be an HTTPs URL.
   - Development URL: This is irrelevant for deployment.
-    
 
 ### 4. Set up environment variables (1/3)
 
@@ -111,12 +109,11 @@ BACKEND_URL=https://backend.mydemoapp.com
 BACKEND_DOMAIN_NAME=backend.mydemoapp.com
 ```
 
-
 ### 5. Set up environment variables (2/3)
 
 Obtain the following values from the developer portal:
 
-**Domain Verification Key**: Go to the developer portal, and on your list of registered apps click on the app you are verifying.  Next click on the "App Checklist" and click on step 7. From this page you can obtain the string that needs added to your `.env` file.
+**Domain Verification Key**: Go to the developer portal, and on your list of registered apps click on the app you are verifying. Next click on the "App Checklist" and click on step 7. From this page you can obtain the string that needs added to your `.env` file.
 
 <img title="Dev Portal Verify URL"  src="./img/domain_verification.png" style="width:400px;height:550px;" />
 
@@ -134,7 +131,6 @@ DOMAIN_VALIDATION_KEY=
 PI_API_KEY=
 ```
 
-
 ### 6. Set up environment variables (3/3)
 
 Configure the following environment variables:
@@ -146,7 +142,6 @@ MONGODB_PASSWORD=
 # Generate a random string (e.g 64 alphanumeric characters) and paste it here:
 SESSION_SECRET=
 ```
-
 
 ### 7. Run the docker containers:
 
@@ -164,7 +159,6 @@ docker ps
 docker-compose ps
 ```
 
-
 You can print out logs of the Docker containers using the following command:
 
 ```
@@ -174,14 +168,12 @@ docker-compose logs -f <service-name>
 docker-compose logs -f reverse-proxy
 ```
 
-
 ### 8. Verify Domain Ownership
 
-Go to the developer portal, and on your list of registered apps click on the app you are verifying. While the app is deployed, click on the "Verify Domain" button. 
+Go to the developer portal, and on your list of registered apps click on the app you are verifying. While the app is deployed, click on the "Verify Domain" button.
 This should verify your frontend domain and mark it as verified (green check mark on the developer portal).
 
 ![](./img/domain_verified.png)
-
 
 ### 9. Open your app in the Pi Browser and make sure it worked:
 
