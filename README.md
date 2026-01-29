@@ -15,7 +15,7 @@ Read [`doc/development.md`](./doc/development.md) to get started and learn how t
 > **WARNING**
 >
 > The demo app uses express session cookies which, in the Sandbox environment, are not correctly saved on the client on some browsers.
-> To properly test all of the features of the Demo App, we recommend you to open the sandbox app using Mozilla Firefox.
+> To properly test all of the features of the Demo App, use Mozilla Firefox.
 
 ## Deployment
 
