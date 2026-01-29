@@ -37,7 +37,7 @@ services:
       FRONTEND_URL: ${FRONTEND_URL}
 
   mongo:
-    image: mongo:5.0
+    image: mongo:7.0
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
