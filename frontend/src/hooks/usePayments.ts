@@ -12,16 +12,12 @@ type UsePaymentsArgs = {
 };
 
 export const usePayments = ({ isAuthenticated, onRequireAuth }: UsePaymentsArgs) => {
-  const onReadyForServerApproval = useCallback((paymentId: string) => {
-    setTimeout(() => {
-      axiosClient.post(`/v2/payments/${paymentId}/approve`, {}, { headers: { Authorization: "Key asd" } });
-    }, 5_000);
+  const onReadyForServerApproval = useCallback(async (paymentId: string) => {
+    await axiosClient.post("/payments/approve", { paymentId });
   }, []);
 
-  const onReadyForServerCompletion = useCallback((paymentId: string, txid: string) => {
-    setTimeout(() => {
-      axiosClient.post(`/v2/payments/${paymentId}/complete`, { txid }, { headers: { Authorization: "Key asd" } });
-    }, 10_000);
+  const onReadyForServerCompletion = useCallback(async (paymentId: string, txid: string) => {
+    await axiosClient.post("/payments/complete", { paymentId, txid });
   }, []);
 
   const onCancel = useCallback(async (paymentId: string) => {
