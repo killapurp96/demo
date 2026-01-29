@@ -6,6 +6,7 @@ interface ProductCardProps {
   price: number;
   pictureURL: string;
   onClickBuy: () => void;
+  disabled?: boolean;
 }
 
 const containerStyle: CSSProperties = {
@@ -39,7 +40,7 @@ const priceSectionStyle: CSSProperties = {
   marginBottom: 8,
 };
 
-const ProductCard = ({ name, description, price, pictureURL, onClickBuy }: ProductCardProps) => {
+const ProductCard = ({ name, description, price, pictureURL, onClickBuy, disabled }: ProductCardProps) => {
   return (
     <div style={containerStyle}>
       <div style={contentRowStyle}>
@@ -55,7 +56,9 @@ const ProductCard = ({ name, description, price, pictureURL, onClickBuy }: Produ
 
       <div style={priceSectionStyle}>
         <strong>{price} Test-π</strong> <br />
-        <button onClick={onClickBuy}>Order</button>
+        <button onClick={onClickBuy} disabled={disabled}>
+          Order
+        </button>
       </div>
     </div>
   );

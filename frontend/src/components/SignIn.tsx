@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 interface SignInProps {
   onSignIn: () => void;
   onModalClose: () => void;
+  disabled?: boolean;
 }
 
 const modalStyle: CSSProperties = {
@@ -28,12 +29,14 @@ const buttonContainerStyle: CSSProperties = {
   gap: "1rem",
 };
 
-const SignIn = ({ onSignIn, onModalClose }: SignInProps) => {
+const SignIn = ({ onSignIn, onModalClose, disabled }: SignInProps) => {
   return (
     <div style={modalStyle}>
       <p style={{ fontWeight: "bold" }}>You need to sign in first.</p>
       <div style={buttonContainerStyle}>
-        <button onClick={onSignIn}>Sign in</button>
+        <button onClick={onSignIn} disabled={disabled}>
+          Sign in
+        </button>
         <button onClick={onModalClose}>Close</button>
       </div>
     </div>

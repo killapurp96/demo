@@ -6,12 +6,19 @@ import { useAuth } from "../hooks/useAuth";
 import { usePayments } from "../hooks/usePayments";
 import { axiosClient } from "../lib/axiosClient.ts";
 
-const config = { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } };
-
 const Shop = () => {
-  const { user, isAuthenticated, showSignIn, signIn, signOut, closeSignIn, requireAuth } = useAuth();
+  const {
+    user,
+    isAuthenticated,
+    showSignIn,
+    signIn,
+    signOut,
+    closeSignIn,
+    requireAuth,
+    isLoading: isAuthLoading,
+  } = useAuth();
 
-  const { orderProduct } = usePayments({
+  const { orderProduct, isLoading } = usePayments({
     isAuthenticated,
     onRequireAuth: requireAuth,
   });
@@ -23,12 +30,18 @@ const Shop = () => {
       user_uid: user?.uid,
       subroute: "/shop",
     };
-    axiosClient.post("/notifications/send", { notifications: [notification] }, config);
+    axiosClient.post("/notifications/send", { notifications: [notification] });
   };
 
   return (
     <>
-      <Header user={user} onSignIn={signIn} onSignOut={signOut} onSendTestNotification={onSendTestNotification} />
+      <Header
+        user={user}
+        onSignIn={signIn}
+        onSignOut={signOut}
+        onSendTestNotification={onSendTestNotification}
+        isLoading={isAuthLoading}
+      />
 
       <ProductCard
         name="Apple Pie"
@@ -36,6 +49,7 @@ const Shop = () => {
         price={0.1}
         pictureURL="https://upload.wikimedia.org/wikipedia/commons/4/4b/Apple_pie.jpg"
         onClickBuy={() => orderProduct("Order Apple Pie", 0.1, { productId: "apple_pie_1" })}
+        disabled={isLoading}
       />
 
       <ProductCard
@@ -48,9 +62,10 @@ const Shop = () => {
             productId: "lemon_pie_1",
           })
         }
+        disabled={isLoading}
       />
 
-      {showSignIn && <SignIn onSignIn={signIn} onModalClose={closeSignIn} />}
+      {showSignIn && <SignIn onSignIn={signIn} onModalClose={closeSignIn} disabled={isAuthLoading} />}
     </>
   );
 };
