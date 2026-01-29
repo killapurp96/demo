@@ -22,9 +22,12 @@ services:
     build: ./frontend
     environment:
       BACKEND_URL: ${BACKEND_URL}
+      SANDBOX_SDK: ${SANDBOX_SDK}
 
   backend:
     build: ./backend
+    ports:
+      - "8000:8000"
     environment:
       NODE_ENV: ${ENVIRONMENT}
       SESSION_SECRET: ${SESSION_SECRET}

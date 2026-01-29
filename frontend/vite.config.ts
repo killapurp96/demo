@@ -5,7 +5,17 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
-    plugins: [react()],
+    plugins: [
+      react(),
+      {
+        name: "html-env-replace",
+        transformIndexHtml(html) {
+          return html
+            .replace(/\$\$BACKEND_URL\$\$/g, env.VITE_BACKEND_URL || "http://localhost:8000")
+            .replace(/\$\$SANDBOX_SDK\$\$/g, env.VITE_SANDBOX_SDK || "true");
+        },
+      },
+    ],
     server: {
       port: parseInt(env.PORT) || 3314,
     },

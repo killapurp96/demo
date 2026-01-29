@@ -12,8 +12,8 @@ fi
 
 # Replace placeholders in /var/www/webapp/index.html at runtime
 # Use semicolons to avoid conflicts with slashes in URLs
-sed -i "s;%VITE_BACKEND_URL%;${BACKEND_URL};g" /var/www/webapp/index.html
-sed -i "s;%VITE_SANDBOX_SDK%;${SANDBOX_SDK};g" /var/www/webapp/index.html
+sed -i 's;\$\$BACKEND_URL\$\$;'"${BACKEND_URL}"';g' /var/www/webapp/index.html
+sed -i 's;\$\$SANDBOX_SDK\$\$;'"${SANDBOX_SDK}"';g' /var/www/webapp/index.html
 
 # Start nginx
 nginx -g "daemon off;"
