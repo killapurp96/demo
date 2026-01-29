@@ -7,9 +7,9 @@
 The production deployment uses docker-compose, and needs to run 4 containers:
 
 - **reverse-proxy**: a simple nginx setup to reverse-proxy requests to the frontend and backend containers
-- **backend**: the backend app (a very simple JSON API built using Node)
+- **backend**: the backend app (a very simple JSON API built with Express)
 - **mongo**: the database (uses an extremely simple single-instance MongoDB setup)
-- **frontend**: the SPA frontend app (built using React and create-react-app)
+- **frontend**: the SPA frontend app (built with React and Vite)
 
 ## Setup steps
 

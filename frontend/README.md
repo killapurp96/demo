@@ -4,6 +4,8 @@ A React + TypeScript frontend for the Pi Demo App, built with Vite.
 
 ## Getting Started
 
+> For Docker setup, see the [Docker Setup documentation](../doc/docker-setup.md).
+
 ### 1. Install dependencies
 
 ```sh
@@ -14,11 +16,11 @@ yarn install
 
 Set `.env.development` with the following variables:
 
-| Variable           | Description                                             | Example                 |
-| ------------------ | ------------------------------------------------------- | ----------------------- |
-| `PORT`             | Dev server port                                         | `3314`                  |
-| `VITE_BACKEND_URL` | Backend API URL                                         | `http://localhost:8000` |
-| `VITE_SANDBOX_SDK` | Enable Pi Sandbox SDK (false if running for production) | `true`                  |
+| Variable           | Description           | Example                 |
+| ------------------ | --------------------- | ----------------------- |
+| `PORT`             | Dev server port       | `3314`                  |
+| `VITE_BACKEND_URL` | Backend API URL       | `http://localhost:8000` |
+| `VITE_SANDBOX_SDK` | Enable Pi Sandbox SDK | `true`                  |
 
 ### 3. Start the development server
 
