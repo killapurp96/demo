@@ -33,18 +33,18 @@ const Shop = () => {
       <ProductCard
         name="Apple Pie"
         description="You know what this is. Pie. Apples. Apple pie."
-        price={3}
+        price={0.1}
         pictureURL="https://upload.wikimedia.org/wikipedia/commons/4/4b/Apple_pie.jpg"
-        onClickBuy={() => orderProduct("Order Apple Pie", 3, { productId: "apple_pie_1" })}
+        onClickBuy={() => orderProduct("Order Apple Pie", 0.1, { productId: "apple_pie_1" })}
       />
 
       <ProductCard
         name="Lemon Meringue Pie"
         description="Order at your own risk."
-        price={5}
+        price={0.2}
         pictureURL="https://live.staticflickr.com/1156/5134246283_f2686ff8a8_b.jpg"
         onClickBuy={() =>
-          orderProduct("Order Lemon Meringue Pie", 5, {
+          orderProduct("Order Lemon Meringue Pie", 0.2, {
             productId: "lemon_pie_1",
           })
         }
