@@ -69,7 +69,7 @@ app.use(
       dbName: dbName,
       collectionName: "user_sessions",
     }),
-  }),
+  }) as unknown as express.RequestHandler,
 );
 
 //
